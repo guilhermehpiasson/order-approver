@@ -57,6 +57,9 @@ module.exports = function(app){
 
       response.gatewayId = "gatewayDemo";
 
+      logger.error("REQUEST: " + req.body);
+      logger.error("RESPONSE: " + JSON.stringify(response));
+
       res.status(200).json(response);
 
     }catch(error) {
