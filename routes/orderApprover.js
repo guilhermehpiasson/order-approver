@@ -1,5 +1,3 @@
-var logger = require('../tasks/logger.js');
-
 var request = require('request');
 
 module.exports = function(app){
@@ -57,13 +55,16 @@ module.exports = function(app){
 
       response.gatewayId = "gatewayDemo";
 
-      logger.error("REQUEST: " + req.body);
-      logger.error("RESPONSE: " + JSON.stringify(response));
+      var resp = new Object();
+      resp.request = req.body;
+      resp.headers = req.headers;
+      console.log("REQUEST: " + req.body);
+      console.log("HEADER - Origin: " + req.headers.origin);
 
-      res.status(200).json(response);
+      res.status(200).json(resp);
 
     }catch(error) {
-      logger.error("ERRO - order.approver: " + error);
+      console.log("ERRO - order.approver: " + error);
       res.status(400).json(error);
     }
   });
