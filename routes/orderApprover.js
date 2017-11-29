@@ -55,13 +55,10 @@ module.exports = function(app){
 
       response.gatewayId = "gatewayDemo";
 
-      var resp = new Object();
-      resp.request = req.body;
-      resp.headers = req.headers;
       console.log("REQUEST: " + req.body);
-      console.log("HEADER - Origin: " + req.headers.origin);
+      console.log("HEADER - Origem: " + req.headers.origin);
 
-      res.status(200).json(resp);
+      res.status(200).json(response);
 
     }catch(error) {
       console.log("ERRO - order.approver: " + error);
