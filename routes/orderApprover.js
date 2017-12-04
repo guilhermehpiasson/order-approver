@@ -43,7 +43,7 @@ module.exports = function(app){
       response.PONumber = "po22222";
       response.referenceNumber = "pg10415";
       response.organizationId = "or-300007";
-      response.transactionType = "0100";
+      response.transactionType = "AUTH";
 
       var authorizationResponse = new Object();
       authorizationResponse.hostTransactionId = "HOST-TRANSACTION-ID";
@@ -57,7 +57,7 @@ module.exports = function(app){
 
       console.log("\n REQUEST: " + JSON.stringify(req.body));
       console.log("\n HEADER: " + JSON.stringify(req.headers));
-      console.log("\n RESPONSE: " + JSON.stringify(response));
+      console.log("\n RESPONSE: " + JSON.stringify(req.body));
 
       res.status(200).json(response);
 
