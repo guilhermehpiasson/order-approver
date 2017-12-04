@@ -61,7 +61,9 @@ module.exports = function(app){
       res.status(200).json(response);
 
     }catch(error) {
-      console.log("ERRO - order.approver: " + error);
+      console.log("ERRO - order.approver: " + req.body);
+      console.log("HEADER - Origem: " + req.headers.origin);
+      console.log("ERRO - Request: " + error);
       res.status(400).json(error);
     }
   });
