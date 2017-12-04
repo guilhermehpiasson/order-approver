@@ -10,7 +10,7 @@ module.exports = function(app){
   app.post('/order/approver', function(req, res){
     try{
       var response = new Object();
-      var order = JSON.parse(req.body);
+      var order = req.body;
 
       response.amount = order.amount;
       response.orderId = order.orderId;
