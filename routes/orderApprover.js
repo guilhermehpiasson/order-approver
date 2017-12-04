@@ -55,15 +55,15 @@ module.exports = function(app){
 
       response.gatewayId = "gatewayDemo";
 
-      console.log("REQUEST: " + req.body);
-      console.log("HEADER - Origem: " + req.headers.origin);
+      console.log("REQUEST: " + JSON.stringify(req.body));
+      console.log("HEADER: " + JSON.stringify(req.headers));
 
       res.status(200).json(response);
 
     }catch(error) {
-      console.log("ERRO - order.approver: " + JSON.stringify(req.body));
-      console.log("HEADER - Origem: " + req.headers.origin);
-      console.log("ERRO - Request: " + error);
+      console.log("ERRO - REQUEST - order.approver: " + JSON.stringify(req.body));
+      console.log("HEADER: " + JSON.stringify(req.headers));
+      console.log("ERRO: " + error);
       res.status(400).json(error);
     }
   });
