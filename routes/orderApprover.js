@@ -47,10 +47,10 @@ module.exports = function(app){
       response.PONumber = "po22222";
       response.referenceNumber = "pg10415";
       response.organizationId = "or-300007";
-      response.transactionType = 0100;
+      response.transactionType = "0100";
 
       var authorizationResponse = new Object();
-      authorizationResponse.hostTransactionId = "HOST-TRANSACTION-ID";
+      authorizationResponse.hostTransactionId = order.transactionId;
       authorizationResponse.responseCode = "1000";
       authorizationResponse.responseReason = "1001";
       authorizationResponse.responseDescription = "1002";
