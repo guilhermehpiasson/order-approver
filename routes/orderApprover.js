@@ -58,7 +58,7 @@ module.exports = function(app){
       authorizationResponse.merchantTransactionId = "2016-06-23T10:39:03+0000";
       response.authorizationResponse = authorizationResponse;
 
-      response.gatewayId = "mundipaggpayment";
+      response.gatewayId = "mundipagg";
 
       console.log("\n REQUEST: " + JSON.stringify(req.body));
 	    logger.error("REQUEST:" + req.body);
