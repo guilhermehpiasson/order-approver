@@ -61,9 +61,10 @@ module.exports = function(app){
       response.gatewayId = "mundipaggpayment";
 
       console.log("\n REQUEST: " + JSON.stringify(req.body));
-	  logger.error("REQUEST:" + req.body);
+	    logger.error("REQUEST:" + req.body);
       console.log("\n HEADER: " + JSON.stringify(req.headers));
       logger.error("HEADER:" + req.headers);
+      console.log("\n RESPONSE: " + JSON.stringify(response));
 
       res.status(200).json(response);
 
