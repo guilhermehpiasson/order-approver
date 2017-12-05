@@ -1,3 +1,5 @@
+var logger = require('../tasks/logger.js');
+
 var request = require('request');
 
 module.exports = function(app){
@@ -7,8 +9,10 @@ module.exports = function(app){
     res.status(200).json("OK");
   });
 
-  app.post('/order/approver', function(req, res){
+  app.post('/order/payment/approver', function(req, res){
+
     try{
+
       var response = new Object();
       var order = req.body;
 
@@ -43,28 +47,53 @@ module.exports = function(app){
       response.PONumber = "po22222";
       response.referenceNumber = "pg10415";
       response.organizationId = "or-300007";
-      response.transactionType = "AUTH";
+      response.transactionType = 0100;
 
       var authorizationResponse = new Object();
       authorizationResponse.hostTransactionId = "HOST-TRANSACTION-ID";
       authorizationResponse.responseCode = "1000";
-      authorizationResponse.responseReason = "1002";
-      authorizationResponse.responseDescription = "Valid PO Number";
+      authorizationResponse.responseReason = "1001";
+      authorizationResponse.responseDescription = "1002";
+      authorizationResponse.authorizationCode = "s001";
       authorizationResponse.merchantTransactionId = "2016-06-23T10:39:03+0000";
       response.authorizationResponse = authorizationResponse;
 
-      response.gatewayId = "gatewayDemo";
+      response.gatewayId = "mundipaggpayment";
 
       console.log("\n REQUEST: " + JSON.stringify(req.body));
+	  logger.error("REQUEST:" + req.body);
       console.log("\n HEADER: " + JSON.stringify(req.headers));
-      console.log("\n RESPONSE: " + JSON.stringify(req.body));
+      logger.error("HEADER:" + req.headers);
 
       res.status(200).json(response);
 
     }catch(error) {
-      console.log("ERRO - REQUEST - order.approver: " + JSON.stringify(req.body));
-      console.log("HEADER: " + JSON.stringify(req.headers));
+      console.log("ERRO: REQUEST - order.payment.approver: " + JSON.stringify(req.body));
+      console.log("ERRO: HEADER - order.payment.approver: " + JSON.stringify(req.headers));
       console.log("ERRO: " + error);
+      res.status(400).json(error);
+    }
+  });
+
+  app.post('/order/approver', function(req, res){
+
+    try{
+
+      var response = new Object();
+
+      response.approvalAction = "true";
+      response.approvalActionReason = "Approved";
+
+      console.log("\n REQUEST: " + req.body);
+      logger.error("REQUEST:" + req.body);
+
+      console.log("\n HEADER: " + JSON.stringify(req.headers));
+      logger.error("HEADER:" + req.headers);
+
+      res.status(200).json(response);
+    }catch(error) {
+      logger.error("ERRO - order.approver:" + error);
+      console.log("ERRO - order.approver: " + error);
       res.status(400).json(error);
     }
   });
